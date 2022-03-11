@@ -1,8 +1,11 @@
-﻿Console.WriteLine("---------Asal Sayı Doğrulama Uygulaması---------\n");
+﻿using System.ComponentModel;
+
+Console.WriteLine("---------Asal Sayı Doğrulama Uygulaması---------\n");
 Console.WriteLine("---------Hoşgeldiniz---------\n\n");
 
 var flag = true;
-
+BindingList<double> PrimeNumbers = new BindingList<double>();
+BindingList<double> NotPrimeNumbers = new BindingList<double>();
 while (flag)
 {
     Console.Write("Lütfen Bir Sayı Giriniz:");
@@ -15,6 +18,7 @@ while (flag)
         if (number == 2 || number == 0 || number % 2 == 0)
         {
             Console.WriteLine($"Girilen Sayı = {number} Asal Değildir.\n ");
+            NotPrimeNumbers.Add(number);
         }
         else if (number != 0)
         {
@@ -26,10 +30,12 @@ while (flag)
             if (counter != 0)
             {
                 Console.WriteLine($"Girilen Sayı = {number} Asal Değildir.\n ");
+                NotPrimeNumbers.Add(number);
             }
             else
             {
                 Console.WriteLine($"Girdiğiniz {number} Asal Sayıdır!\n");
+                PrimeNumbers.Add(number);
             }
         }
     }
@@ -55,6 +61,17 @@ bool WantToCont()
         }
         else if (input == "h" || input == "hayır")
         {
+            Console.WriteLine($"Girdiğiniz Asal Sayılar:");
+            foreach (var item in PrimeNumbers)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine($"Girdiğiniz Asal Olmayan Sayılar:");
+            foreach (var item in NotPrimeNumbers)
+            {
+                Console.WriteLine(item);
+            }
+            
             Console.WriteLine("Hoşçakalın :)");
             return false;
         }
